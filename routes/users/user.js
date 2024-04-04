@@ -1,8 +1,8 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
 const routes = express.Router();
-const User = require("../model/User");
-const fetchUser = require("../middleware/fetchUser");
+const User = require("../../model/User");
+const fetchUser = require("../../middleware/fetchUser");
 
 // @route   GET api/v1/user
 // @desc    Get user by token

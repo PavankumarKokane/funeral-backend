@@ -49,7 +49,7 @@ app.use("/api/v1/contact", require("./routes/contact"));
 
 // Members API
 
-
+app.use("/api/v1/addmember", require("./routes/members/addmember"));
 
 
 
