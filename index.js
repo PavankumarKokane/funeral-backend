@@ -29,22 +29,29 @@ app.get('/api/v1/keeplive', (req, res) => {
 
 // Available routes
 
-// @route   GET
+// Auth API
 
-// @desc    Get user by token
-app.use("/api/v1/user", require("./routes/user"));
+// @desc    POST Register user
+app.use("/api/v1/register", require("./routes/auth/register"));
+//@desc     POST Login user
+app.use("/api/v1/login", require("./routes/auth/login"));
 
-// @route   POST
 
-// @desc    Contact Us
+// @desc    GET user by token
+app.use("/api/v1/user", require("./routes/users/user"));
+
+
+// Contact US Form API
+
+// @desc    POST Contact Us
 app.use("/api/v1/contact", require("./routes/contact"));
 
-// @desc    Register user
-app.use("/api/v1/register", require("./routes/register"));
 
-//@desc     Login user
-app.use("/api/v1/login", require("./routes/login"));
+// Members API
 
-//@desc Payment Link
 
-app.use("/api/v1/create-payment-link", require("./routes/paymentlink"));
+
+
+
+//@desc POST Payment Link
+app.use("/api/v1/create-payment-link", require("./routes/payment/paymentlink"));
