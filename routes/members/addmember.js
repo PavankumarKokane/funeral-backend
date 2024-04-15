@@ -2,27 +2,22 @@ const express = require("express");
 const routes = express.Router();
 const Members = require("../../model/Member");
 const fetchUser = require("../../middleware/fetchUser");
-const imageUpload = require("../../utility/imageUpload");
-const upload = require('../../utility/upload');
+const { uploadProfile } = require('../../utility/upload');
 
-routes.post("/", fetchUser, upload.array('profile', 5), async (req, res) => {
+
+routes.post("/", fetchUser, uploadProfile.single('profile'), async (req, res) => {
   const { name, birthDate, deathDate, shortInfo, qrSite, services } = req.body;
   
   try {
     // Get the user from the request object
     const userData = req.user;
 
-    // Process uploaded images if they exist
-    let responseImages = [];
-    if (req.files && req.files.length > 0) {
-      responseImages = await imageUpload(userData, req.files);
-    }
-
     // Create an array of image objects
-    const images = responseImages.map(image => ({
-      type: 'profile', // Set the type of image as needed
-      url: image.url
-    }));
+    const file = req.file;
+    const images = [{
+      type : file.fieldname,
+      url : `/uploads/${userData}/${file.fieldname}/` + file.filename
+    }]; 
     
     // Create a new Member object
     const member = new Members({

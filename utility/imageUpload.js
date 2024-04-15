@@ -1,14 +1,14 @@
 const fs = require('fs');
 
-const imageUpload = async (userData, files) => {
+const imageUpload = async (userData, files, type) => {
     const userID = userData;
     try {
       const uploadedImages = [];
   
       // Loop through uploaded files and create an array of image objects
       for (const file of files) {
-        const imageUrl = `/uploads/${userID}/` + file.filename;
-        uploadedImages.push({ type: "Gallery", url: imageUrl }); // Set type here
+        const imageUrl = `/uploads/${userID}/${type}` + file.filename;
+        uploadedImages.push({ type: type, url: imageUrl }); // Set type here
       }
   
       // Return the array of image objects

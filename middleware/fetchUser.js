@@ -6,7 +6,7 @@ const fetchUser = (req, res, next) => {
   // get the token from the header
   const token = req.header("x-auth-token");
 
-  console.log("token: ", token);
+  //console.log("token: ", token);
 
   // if there is no token, return an error
   if (!token) {
@@ -21,7 +21,7 @@ const fetchUser = (req, res, next) => {
     // verify the token
     const data = jwt.verify(token, "1lo4eumiui");
 
-    console.log("decoded: ", data);
+    //console.log("decoded: ", data);
 
     req.user = data._id;
 
